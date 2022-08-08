@@ -18,6 +18,21 @@ router.post('', async (req, res) => {
 
 // try {
     console.log('Create advisory:- ', req.body);
+    return res.status(200).json(
+        {
+            category: 'EQUITY',
+            typeOfCall: 'INTRADAY',
+            action: 'BUY',
+            timeOfCall: '12:59 PM',
+            nameOfShare: 'Upstox',
+            rate: '1000',
+            stopLoss: 990,
+            target: 1030,
+            secondTarget: 1050,
+            strikePrice: 3,
+            expiryDate: '2022-08-13'
+          }
+    )
     const dbresult = await advisoryDataModel.create(req.body);
 
     !dbresult && res.status(500).json({errorResponse: {status: 'failed', message: 'Advisory not created'}})
