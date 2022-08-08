@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const { default: helmet } = require('helmet');
 connectDB();
 
-app.use(cors({origin:'http://143.110.240.38'}))
+app.use(cors({origin:'*'}))
 app.use(morgan('common'))
 app.use(helmet())
 app.use(bodyParser.json());
