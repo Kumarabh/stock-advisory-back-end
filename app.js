@@ -1,12 +1,13 @@
 require('dotenv').config({path: './config/config.env'})
 const cors = require('cors');
 const connectDB = require('./config/db');
+connectDB();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const { default: helmet } = require('helmet');
-connectDB();
+
 
 app.use(cors({origin:'*'}))
 app.use(morgan('common'))
