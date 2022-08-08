@@ -21,16 +21,8 @@ router.post('', async (req, res) => {
     const dbresult = await advisoryDataModel.create(req.body);
 
     !dbresult && res.status(500).json({errorResponse: {status: 'failed', message: 'Advisory not created'}})
-
-    const response = {
-        status: 'success',
-        message: 'Advisory added successfully.'
-    }
-    const dbresponse = {
-        response: dbresult,
-        errorResponse: response
-    }
-    res.status(200).json(dbresponse);
+    
+    res.status(200).json(dbresult);
 
 // } catch (error) {
 //     res.status(500).json('Internal server error.');
