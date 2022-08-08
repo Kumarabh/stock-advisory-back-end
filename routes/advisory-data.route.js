@@ -16,18 +16,26 @@ router.get('', async (req, res) => {
 // CREATE ADVISORY
 router.post('', async (req, res) => {
 
-// try {
-    console.log('Create advisory:- ', req.body);
-    const dbresult = await new advisoryDataModel(req.body).save();
+    // const emailExists = await advisoryDataModel.findOne({email: req.body.email})
+    // emailExists && res.status(500).json('Email exists');
+
+    // const contactExists = await advisoryDataModel.findOne({contact: req.body.contact})
+    // contactExists && res.status(500).json('contact exists');
+
+    const dbresult = await advisoryDataModel.create(req.body);
 
     !dbresult && res.status(500).json({errorResponse: {status: 'failed', message: 'Advisory not created'}})
-    
-    res.status(200).json(dbresult);
 
-// } catch (error) {
-//     res.status(500).json('Internal server error.');
-// }
-   
+    const response = {
+        status: 'success',
+        message: 'Advisory added successfully.'
+    }
+    const dbresponse = {
+        response: dbresult,
+        errorResponse: response
+    }
+    res.status(200).json(dbresponse);
+
 })
 
 router.put('/:id', async (req, res) => {
