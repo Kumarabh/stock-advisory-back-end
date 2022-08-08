@@ -16,7 +16,7 @@ router.get('', async (req, res) => {
 // CREATE ADVISORY
 router.post('', async (req, res) => {
 
-try {
+// try {
     console.log('Create advisory:- ', req.body);
     const dbresult = await advisoryDataModel.create(req.body);
 
@@ -32,9 +32,9 @@ try {
     }
     res.status(200).json(dbresponse);
 
-} catch (error) {
-    res.status(500).json('Internal server error.');
-}
+// } catch (error) {
+//     res.status(500).json('Internal server error.');
+// }
    
 })
 
