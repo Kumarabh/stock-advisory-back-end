@@ -16,13 +16,8 @@ router.get('', async (req, res) => {
 // CREATE ADVISORY
 router.post('', async (req, res) => {
 
-    // const emailExists = await advisoryDataModel.findOne({email: req.body.email})
-    // emailExists && res.status(500).json('Email exists');
-
-    // const contactExists = await advisoryDataModel.findOne({contact: req.body.contact})
-    // contactExists && res.status(500).json('contact exists');
     console.log('Add advisory', req.body);
-    const dbresult = await advisoryDataModel.create(req.body);
+    const dbresult = await new advisoryDataModel(req.body).save();
 
     !dbresult && res.status(500).json({errorResponse: {status: 'failed', message: 'Advisory not created'}})
 
